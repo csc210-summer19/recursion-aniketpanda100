@@ -36,9 +36,24 @@ public class RecursionFun {
 	//
 	// Precondition: n >= 0
 	public String intWithCommas(int n) {
-		// TODO: Implement this method using recursion. Do not use a loop
-		return "Under construction";
+		String original = new Integer(n).toString(), buildString = "";
+		return intWithCommas(original, buildString, 1);
+
 	}
+
+	private String intWithCommas(String orig, String build, int index) {
+		if (index > orig.length())
+			return "";
+		else if ((index - 1) % 3 == 0 && index > 3) {
+			return intWithCommas(orig, build, index + 1)
+					+ orig.charAt(orig.length() - index) + ',';
+
+		} else {
+			return intWithCommas(orig, build, index + 1)
+					+ orig.charAt(orig.length() - index);
+		}
+	}
+
 
 	// Write recursive method reverseArray that reverses the array elements in a
 	// filled array of ints. Use recursion; do not use a loop. The following
